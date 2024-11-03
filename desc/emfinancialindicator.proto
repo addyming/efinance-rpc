@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+// EmFinancialIndicator message
+
+message EmFinancialIndicatorInfo {
+  optional int32 id = 1;
+  optional string financial_indicators_key = 2;
+  optional string financial_indicators_value = 3;
+  optional string financial_indicators_name = 4;
+  optional int64  create_time = 5;
+  optional string remarks = 6;
+  optional string status = 7;
+}
+
+message EmFinancialIndicatorListResp {
+  uint64 total = 1;
+  repeated EmFinancialIndicatorInfo data = 2;
+}
+
+message EmFinancialIndicatorListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string financial_indicators_key = 3;
+  optional string financial_indicators_value = 4;
+  optional string financial_indicators_name = 5;
+}
+
+
+  service Efinance {
+
+  // EmFinancialIndicator management
+  // group: emfinancialindicator
+  rpc createEmFinancialIndicator (EmFinancialIndicatorInfo) returns (BaseIDInt32Resp);
+  // group: emfinancialindicator
+  rpc updateEmFinancialIndicator (EmFinancialIndicatorInfo) returns (BaseResp);
+  // group: emfinancialindicator
+  rpc getEmFinancialIndicatorList (EmFinancialIndicatorListReq) returns (EmFinancialIndicatorListResp);
+  // group: emfinancialindicator
+  rpc getEmFinancialIndicatorById (IDInt32Req) returns (EmFinancialIndicatorInfo);
+  // group: emfinancialindicator
+  rpc deleteEmFinancialIndicator (IDsInt32Req) returns (BaseResp);
+
+
+}

@@ -1,0 +1,231 @@
+syntax = "proto3";
+
+package efinance;
+option go_package = "./efinance";
+
+message BaseIDInt32Resp {
+  int32 id = 1;
+  string msg = 2;
+}
+
+message BaseIDInt64Resp {
+  int64 id = 1;
+  string msg = 2;
+}
+
+message BaseIDResp {
+  uint64 id = 1;
+  string msg = 2;
+}
+
+message BaseIDStringResp {
+  string id = 1;
+  string msg = 2;
+}
+
+message BaseIDUint32Resp {
+  uint32 id = 1;
+  string msg = 2;
+}
+
+message BaseResp {
+  string msg = 1;
+}
+
+message BaseUUIDResp {
+  string id = 1;
+  string msg = 2;
+}
+
+message EmFinancialIndicatorInfo {
+  optional int32 id = 1;
+  optional string financial_indicators_key = 2;
+  optional string financial_indicators_value = 3;
+  optional string financial_indicators_name = 4;
+  optional int64 create_time = 5;
+  optional string remarks = 6;
+  optional string status = 7;
+}
+
+message EmFinancialIndicatorListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string financial_indicators_key = 3;
+  optional string financial_indicators_value = 4;
+  optional string financial_indicators_name = 5;
+}
+
+message EmFinancialIndicatorListResp {
+  uint64 total = 1;
+  repeated EmFinancialIndicatorInfo data = 2;
+}
+
+message EmStockBasicInfoInfo {
+  optional int32 id = 1;
+  optional string f1 = 2;
+  optional string f2 = 3;
+  optional string f3 = 4;
+  optional string f4 = 5;
+  optional string f5 = 6;
+  optional string f6 = 7;
+  optional string f7 = 8;
+  optional string f8 = 9;
+  optional string f9 = 10;
+  optional string f10 = 11;
+  optional string f11 = 12;
+  optional string f12 = 13;
+  optional string f13 = 14;
+  optional string f14 = 15;
+  optional string f15 = 16;
+  optional string f16 = 17;
+  optional string f17 = 18;
+  optional string f18 = 19;
+  optional string f19 = 20;
+  optional string f20 = 21;
+  optional string f21 = 22;
+  optional string f22 = 23;
+  optional string f23 = 24;
+  optional string f24 = 25;
+  optional string f25 = 26;
+  optional string f26 = 27;
+  optional string f27 = 28;
+  optional string f28 = 29;
+  optional string f29 = 30;
+  optional string f30 = 31;
+  optional int64 create_time = 32;
+  optional string remarks = 33;
+  optional string status = 34;
+  optional int32 st1 = 35;
+  optional int32 st2 = 36;
+  optional int32 st3 = 37;
+  optional int32 st4 = 38;
+  optional int32 st5 = 39;
+}
+
+message EmStockBasicInfoListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+}
+
+message EmStockBasicInfoListResp {
+  uint64 total = 1;
+  repeated EmStockBasicInfoInfo data = 2;
+}
+
+message EmStockWatchInfo {
+  optional int32 id = 1;
+  optional string stock_watch_code = 2;
+  optional string stock_watch_name = 3;
+  optional string stock_watch_up_price = 4;
+  optional string stock_watch_fall_price = 5;
+  optional string stock_watch_up_change = 6;
+  optional string stock_watch_fall_change = 7;
+}
+
+message EmStockWatchListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string stock_watch_code = 3;
+  optional string stock_watch_name = 4;
+  optional string stock_watch_up_price = 5;
+}
+
+message EmStockWatchListResp {
+  uint64 total = 1;
+  repeated EmStockWatchInfo data = 2;
+}
+
+//  base message
+message Empty {}
+
+message IDInt32Req {
+  int32 id = 1;
+}
+
+message IDInt64Req {
+  int64 id = 1;
+}
+
+message IDReq {
+  uint64 id = 1;
+}
+
+message IDStringReq {
+  string id = 1;
+}
+
+message IDUint32Req {
+  uint32 id = 1;
+}
+
+message IDsInt32Req {
+  repeated int32 ids = 1;
+}
+
+message IDsInt64Req {
+  repeated int64 ids = 1;
+}
+
+message IDsReq {
+  repeated uint64 ids = 1;
+}
+
+message IDsStringReq {
+  repeated string ids = 1;
+}
+
+message IDsUint32Req {
+  repeated uint32 ids = 1;
+}
+
+message PageInfoReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+}
+
+message UUIDReq {
+  string id = 1;
+}
+
+message UUIDsReq {
+  repeated string ids = 1;
+}
+
+service Efinance {
+  //  group: base
+  rpc initDatabase(Empty) returns (BaseResp);
+  //  EmFinancialIndicator management
+  //  group: emfinancialindicator
+  rpc createEmFinancialIndicator(EmFinancialIndicatorInfo) returns (BaseIDInt32Resp);
+  //  group: emfinancialindicator
+  rpc updateEmFinancialIndicator(EmFinancialIndicatorInfo) returns (BaseResp);
+  //  group: emfinancialindicator
+  rpc getEmFinancialIndicatorList(EmFinancialIndicatorListReq) returns (EmFinancialIndicatorListResp);
+  //  group: emfinancialindicator
+  rpc getEmFinancialIndicatorById(IDInt32Req) returns (EmFinancialIndicatorInfo);
+  //  group: emfinancialindicator
+  rpc deleteEmFinancialIndicator(IDsInt32Req) returns (BaseResp);
+  //  EmStockBasicInfo management
+  //  group: emstockbasicinfo
+  rpc createEmStockBasicInfo(EmStockBasicInfoInfo) returns (BaseIDInt32Resp);
+  //  group: emstockbasicinfo
+  rpc updateEmStockBasicInfo(EmStockBasicInfoInfo) returns (BaseResp);
+  //  group: emstockbasicinfo
+  rpc getEmStockBasicInfoList(EmStockBasicInfoListReq) returns (EmStockBasicInfoListResp);
+  //  group: emstockbasicinfo
+  rpc getEmStockBasicInfoById(IDInt32Req) returns (EmStockBasicInfoInfo);
+  //  group: emstockbasicinfo
+  rpc deleteEmStockBasicInfo(IDsInt32Req) returns (BaseResp);
+  //  EmStockWatch management
+  //  group: emstockwatch
+  rpc createEmStockWatch(EmStockWatchInfo) returns (BaseIDInt32Resp);
+  //  group: emstockwatch
+  rpc updateEmStockWatch(EmStockWatchInfo) returns (BaseResp);
+  //  group: emstockwatch
+  rpc getEmStockWatchList(EmStockWatchListReq) returns (EmStockWatchListResp);
+  //  group: emstockwatch
+  rpc getEmStockWatchById(IDInt32Req) returns (EmStockWatchInfo);
+  //  group: emstockwatch
+  rpc deleteEmStockWatch(IDsInt32Req) returns (BaseResp);
+}
+

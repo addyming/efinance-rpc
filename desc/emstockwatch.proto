@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+// EmStockWatch message
+
+message EmStockWatchInfo {
+  optional int32 id = 1;
+  optional string stock_watch_code = 2;
+  optional string stock_watch_name = 3;
+  optional string stock_watch_up_price = 4;
+  optional string stock_watch_fall_price = 5;
+  optional string stock_watch_up_change = 6;
+  optional string stock_watch_fall_change = 7;
+}
+
+message EmStockWatchListResp {
+  uint64 total = 1;
+  repeated EmStockWatchInfo data = 2;
+}
+
+message EmStockWatchListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string stock_watch_code = 3;
+  optional string stock_watch_name = 4;
+  optional string stock_watch_up_price = 5;
+}
+
+
+service Efinance {
+
+  // EmStockWatch management
+  // group: emstockwatch
+  rpc createEmStockWatch (EmStockWatchInfo) returns (BaseIDInt32Resp);
+  // group: emstockwatch
+  rpc updateEmStockWatch (EmStockWatchInfo) returns (BaseResp);
+  // group: emstockwatch
+  rpc getEmStockWatchList (EmStockWatchListReq) returns (EmStockWatchListResp);
+  // group: emstockwatch
+  rpc getEmStockWatchById (IDInt32Req) returns (EmStockWatchInfo);
+  // group: emstockwatch
+  rpc deleteEmStockWatch (IDsInt32Req) returns (BaseResp);
+
+
+}

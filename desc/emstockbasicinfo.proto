@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+// EmStockBasicInfo message
+
+message EmStockBasicInfoInfo {
+  optional int32 id = 1;
+  optional string f1 = 2;
+  optional string f2 = 3;
+  optional string f3 = 4;
+  optional string f4 = 5;
+  optional string f5 = 6;
+  optional string f6 = 7;
+  optional string f7 = 8;
+  optional string f8 = 9;
+  optional string f9 = 10;
+  optional string f10 = 11;
+  optional string f11 = 12;
+  optional string f12 = 13;
+  optional string f13 = 14;
+  optional string f14 = 15;
+  optional string f15 = 16;
+  optional string f16 = 17;
+  optional string f17 = 18;
+  optional string f18 = 19;
+  optional string f19 = 20;
+  optional string f20 = 21;
+  optional string f21 = 22;
+  optional string f22 = 23;
+  optional string f23 = 24;
+  optional string f24 = 25;
+  optional string f25 = 26;
+  optional string f26 = 27;
+  optional string f27 = 28;
+  optional string f28 = 29;
+  optional string f29 = 30;
+  optional string f30 = 31;
+  optional int64  create_time = 32;
+  optional string remarks = 33;
+  optional string status = 34;
+  optional int32 st1 = 35;
+  optional int32 st2 = 36;
+  optional int32 st3 = 37;
+  optional int32 st4 = 38;
+  optional int32 st5 = 39;
+}
+
+message EmStockBasicInfoListResp {
+  uint64 total = 1;
+  repeated EmStockBasicInfoInfo data = 2;
+}
+
+message EmStockBasicInfoListReq {
+  uint64 page = 1;
+  uint64 page_size = 2;
+  optional string f1 = 3;
+  optional string f2 = 4;
+  optional string f3 = 5;
+}
+
+
+service Efinance {
+
+  // EmStockBasicInfo management
+  // group: emstockbasicinfo
+  rpc createEmStockBasicInfo (EmStockBasicInfoInfo) returns (BaseIDInt32Resp);
+  // group: emstockbasicinfo
+  rpc updateEmStockBasicInfo (EmStockBasicInfoInfo) returns (BaseResp);
+  // group: emstockbasicinfo
+  rpc getEmStockBasicInfoList (EmStockBasicInfoListReq) returns (EmStockBasicInfoListResp);
+  // group: emstockbasicinfo
+  rpc getEmStockBasicInfoById (IDInt32Req) returns (EmStockBasicInfoInfo);
+  // group: emstockbasicinfo
+  rpc deleteEmStockBasicInfo (IDsInt32Req) returns (BaseResp);
+
+
+}
